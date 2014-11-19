@@ -84,6 +84,8 @@ c.Expression = c.inherit({
       return this.clone().addExpression(expr, 1);
     } else if (expr instanceof c.Variable) {
       return this.clone().addVariable(expr, 1);
+    } else {
+        throw new c.NonExpression();
     }
   },
 
@@ -92,6 +94,8 @@ c.Expression = c.inherit({
       return this.clone().addExpression(expr, -1);
     } else if (expr instanceof c.Variable) {
       return this.clone().addVariable(expr, -1);
+    } else {
+      throw new c.NonExpression();
     }
   },
 
@@ -106,6 +110,8 @@ c.Expression = c.inherit({
         throw new c.NonExpression();
       }
       return this.times(1 / x.constant);
+    } else {
+      throw new c.NonExpression();
     }
   },
 

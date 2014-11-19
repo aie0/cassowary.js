@@ -11,9 +11,18 @@ var weak = c.Strength.weak;
 
 c.SimplexSolver = c.inherit({
   extends: c.Tableau,
-  initialize: function(){
+  initialize: function(args) {
 
     c.Tableau.call(this);
+
+    // set public attributes
+    this.autoSolve = true;
+
+    // override parameters
+    for (var key in args) {
+        this[key] = args[key];
+    }    
+
     this._stayMinusErrorVars = [];
     this._stayPlusErrorVars = [];
 
@@ -30,7 +39,6 @@ c.SimplexSolver = c.inherit({
     this._slackCounter = 0;
     this._artificialCounter = 0;
     this._dummyCounter = 0;
-    this.autoSolve = true;
     this._needsSolving = false;
 
     this._optimizeCount = 0;
