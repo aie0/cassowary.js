@@ -4,6 +4,8 @@
 //    http://www.apache.org/licenses/LICENSE-2.0
 //
 // Parts Copyright (C) 2011-2012, Alex Russell (slightlyoff@chromium.org)
+//
+// Parts Copyright (C) 2014, Victor Genin
 
 (function(scope){
 "use strict";
@@ -60,10 +62,12 @@ var walkForMethod = function(ctor, name) {
   }
 };
 
-// Global
+// TODO: remove global assignment, as it should only when AMD or CommonJS not applied
 var c = scope.c = function() {
   if(c._api) {
     return c._api.apply(this, arguments);
+  } else { // if there is no api, just return the namespace
+    return c;
   }
 };
 
@@ -74,7 +78,6 @@ c.debug = false;
 c.trace = false;
 c.verbose = false;
 c.traceAdded = false;
-c.GC = false;
 
 //
 // Constants
@@ -181,7 +184,7 @@ c.extend = function(obj, props) {
           obj[x] = props[x];
       }
     } catch(e) {
-      // console.warn("c.extend assignment failed on property", x);
+      throw new Error("c.extend assignment failed on property", x);
     }
   });
   return obj;
@@ -965,6 +968,8 @@ c.Point = c.inherit({
 // Use of this source code is governed by http://www.apache.org/licenses/LICENSE-2.0
 //
 // Parts Copyright (C) 2011, Alex Russell (slightlyoff@chromium.org)
+//
+// Parts Copyright (C) 2014, Victor Genin
 
 // FILE: EDU.Washington.grad.gjb.cassowary
 // package EDU.Washington.grad.gjb.cassowary;
@@ -1003,7 +1008,6 @@ c.Expression = c.inherit({
       console.log("*******************************");
     }
 
-    if (c.GC) console.log("clone c.Expression");
     this.constant = constant;
     this.terms = terms.clone();
     return this;
@@ -2705,47 +2709,4 @@ c.SimplexSolver = c.inherit({
     constraintSet.add(aVar);
   },
 });
-})(this["c"]||module.parent.exports||{});
-
-// Copyright (C) 1998-2000 Greg J. Badros
-// Use of this source code is governed by http://www.apache.org/licenses/LICENSE-2.0
-//
-// Parts Copyright (C) 2011, Alex Russell (slightlyoff@chromium.org)
-
-(function(c) {
-"use strict";
-
-c.Timer = c.inherit({
-  initialize: function() {
-    this.isRunning = false;
-    this._elapsedMs = 0;
-  },
-
-  start: function() {
-    this.isRunning = true;
-    this._startReading = new Date();
-    return this;
-  },
-
-  stop: function() {
-    this.isRunning = false;
-    this._elapsedMs += (new Date()) - this._startReading;
-    return this;
-  },
-
-  reset: function() {
-    this.isRunning = false;
-    this._elapsedMs = 0;
-    return this;
-  },
-
-  elapsedTime : function() {
-    if (!this.isRunning) {
-      return this._elapsedMs / 1000;
-    } else {
-      return (this._elapsedMs + (new Date() - this._startReading)) / 1000;
-    }
-  },
-});
-
 })(this["c"]||module.parent.exports||{});

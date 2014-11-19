@@ -2,6 +2,8 @@
 // Use of this source code is governed by http://www.apache.org/licenses/LICENSE-2.0
 //
 // Parts Copyright (C) 2011, Alex Russell (slightlyoff@chromium.org)
+//
+// Parts Copyright (C) 2014, Victor Genin
 
 // FILE: EDU.Washington.grad.gjb.cassowary
 // package EDU.Washington.grad.gjb.cassowary;
@@ -40,7 +42,6 @@ c.Expression = c.inherit({
       console.log("*******************************");
     }
 
-    if (c.GC) console.log("clone c.Expression");
     this.constant = constant;
     this.terms = terms.clone();
     return this;

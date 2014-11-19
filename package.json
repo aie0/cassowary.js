@@ -2,7 +2,7 @@
   "name" : "cassowary",
   "description": "A fast, modern JavaScript version of the Cassowary hierarchial linear constraint solver",
   "author": "Alex Russell <slightlyoff@chromium.org>",
-  "version" : "0.0.3",
+  "version" : "0.0.4",
   "licenses": [
     {
       "type": "Apache-2.0",
@@ -24,6 +24,10 @@
     {
       "name": "Greg J. Badros",
       "url": "http://www.badros.com/greg/"
+    },
+    {
+      "name": "Victor Genin",
+      "url": "http://jsdeepdive.blogspot.com"
     }
   ],
   "scripts": {

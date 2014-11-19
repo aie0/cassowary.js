@@ -13,3 +13,4 @@ out.prof
 lcov.info
 sauce_connect.log*
 /build/
+/bower_components

@@ -165,22 +165,7 @@ Binary versions of the solver that work in both the browser and under node are
 available in the `bin/` directory and are updated frequently. Tests are run on
 each commit via Travis CI:
 
-[![Build Status](https://travis-ci.org/slightlyoff/cassowary-js-refactor.png?branch=master)](https://travis-ci.org/slightlyoff/cassowary-js-refactor)
+[![Build Status](https://travis-ci.org/aie0/cassowary.js.svg)](https://travis-ci.org/aie0/cassowary.js)
 
 Pull requests that do not include tests or break the build will be denied or 
 reverted, respectively.
-
-
-<!--
-TODO(slightlyoff): show how to set configuration information through command line and in the tests.
-
-API
----
-
-TODO(slightlyoff)
-
-Make and NPM Targets
---------------------
-
-TODO(slightlyoff)
--->

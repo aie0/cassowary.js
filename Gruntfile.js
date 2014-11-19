@@ -16,8 +16,7 @@ module.exports = function (grunt) {
                     'src/Constraint.js',
                     'src/EditInfo.js',
                     'src/Tableau.js',
-                    'src/SimplexSolver.js',
-                    'src/Timer.js'
+                    'src/SimplexSolver.js'
                 ],
                 dest: 'dist/cassowary-<%= pkg.version %>.js'
             }
