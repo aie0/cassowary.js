@@ -49,6 +49,10 @@ c.SimplexSolver = c.inherit({
       c.traceprint("objective expr == " + this.rows.get(this._objective));
   },
 
+  isNeedResolving: function() {
+    return this._needsSolving;
+  },
+
   add: function(/*c.Constraint, ...*/) {
     for (var x = 0; x < arguments.length; x++) {
       this.addConstraint(arguments[x]);
