@@ -74,10 +74,7 @@ var c = scope.c = function() {
 //
 // Configuration
 //
-c.debug = false;
 c.trace = false;
-c.verbose = false;
-c.traceAdded = false;
 
 //
 // Constants
@@ -191,9 +188,21 @@ c.extend = function(obj, props) {
 };
 
 // FIXME: legacy API to be removed
-c.traceprint = function(s /*String*/) { if (c.verbose) { console.log(s); } };
-c.fnenterprint = function(s /*String*/) { console.log("* " + s); };
-c.fnexitprint = function(s /*String*/) { console.log("- " + s); };
+c.traceprint = function(s1 /*String*/, s2 /*String*/, s3 /*String*/) {
+  if(c.trace) {
+    if (s2) {
+      if (s3) {
+        console.log(s1, s2, s3);
+      } else {
+        console.log(s1, s2);
+      }
+    } else {
+      console.log(s1);
+    }
+  }
+};
+c.fnenterprint = function(s /*String*/) { c.trace && console.log("* " + s); };
+c.fnexitprint = function(s /*String*/) { c.trace && console.log("- " + s); };
 
 c.assert = function(f /*boolean*/, description /*String*/) {
   if (!f) {

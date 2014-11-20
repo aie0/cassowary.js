@@ -12,7 +12,6 @@
 "use strict";
 
 var checkNumber = function(value, otherwise){
-  // if(isNaN(value)) { debugger; }
   return (typeof value === "number") ? value : otherwise;
 };
 
@@ -36,31 +35,19 @@ c.Expression = c.inherit({
   },
 
   initializeFromHash: function(constant /*ClDouble*/, terms /*c.Hashtable*/) {
-    if (c.verbose) {
-      console.log("*******************************");
-      console.log("clone c.initializeFromHash");
-      console.log("*******************************");
-    }
-
     this.constant = constant;
     this.terms = terms.clone();
     return this;
   },
 
   multiplyMe: function(x /*double*/) {
-    this.constant *= x;
     var t = this.terms;
+    this.constant *= x;    
     t.each(function(clv, coeff) { t.set(clv, coeff * x); });
     return this;
   },
 
   clone: function() {
-    if (c.verbose) {
-      console.log("*******************************");
-      console.log("clone c.Expression");
-      console.log("*******************************");
-    }
-
     var e = c.Expression.empty();
     e.initializeFromHash(this.constant, this.terms);
     return e;

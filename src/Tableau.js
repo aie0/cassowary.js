@@ -35,7 +35,7 @@ c.Tableau = c.inherit({
   // then it's in the objective function). Update the column cross-indices.
   noteRemovedVariable: function(v /*c.AbstractVariable*/,
                                 subject /*c.AbstractVariable*/) {
-    c.trace && console.log("c.Tableau::noteRemovedVariable: ", v, subject);
+    c.traceprint("c.Tableau::noteRemovedVariable: ", v, subject);
     var column = this.columns.get(v);
     if (subject && column) {
       column.delete(subject);
@@ -126,7 +126,7 @@ c.Tableau = c.inherit({
         expr.terms.delete(aVar);
       }, this);
     } else {
-      if (c.trace) console.log("Could not find var", aVar, "in columns");
+      c.traceprint("Could not find var", aVar, "in columns");
     }
     if (aVar.isExternal) {
       this._externalRows.delete(aVar);
@@ -141,7 +141,7 @@ c.Tableau = c.inherit({
     expr.terms.each(function(clv, coeff) {
       var varset = this.columns.get(clv);
       if (varset != null) {
-        if (c.trace) console.log("removing from varset:", aVar);
+        c.traceprint("removing from varset:", aVar);
         varset.delete(aVar);
       }
     }, this);
