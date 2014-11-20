@@ -1789,7 +1789,7 @@ c.SimplexSolver = c.inherit({
   },
 
   maximize: function (/* c.Variable, ...*/) {    
-    var objectives = this._objectives, item, i, len;
+    var objectives = this._objectives, item, objective, i, len;
     for (i = 0, len = arguments.length; i < len; i += 1) {
       item = arguments[i];
       objective = new c.ObjectiveVariable( {name: item.name + '_objective'});
