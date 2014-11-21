@@ -923,11 +923,20 @@ c.SlackVariable = c.inherit({
 // Use of this source code is governed by http://www.apache.org/licenses/LICENSE-2.0
 //
 // Parts Copyright (C) 2011, Alex Russell (slightlyoff@chromium.org)
+// Parts Copyright (C) 2014, Victor Genin
 
 (function(c) {
 "use strict";
 c.Point = c.inherit({
   initialize: function(x, y, suffix) {
+    if (typeof x === "string") { // only name constractor
+      suffix = x;
+      x = null;
+    }
+
+    if (typeof suffix !== 'undefined') { // count '0' as a valid suffix
+      this._name = suffix;
+    }
     if (x instanceof c.Variable) {
       this._x = x;
     } else {
@@ -948,6 +957,7 @@ c.Point = c.inherit({
     }
   },
 
+  get name() { return this._name; },
   get x() { return this._x; },
   set x(xVar) {
     if (xVar instanceof c.Variable) {
@@ -1886,6 +1896,7 @@ c.SimplexSolver = c.inherit({
     this.removeEditVarsTo(
       this._editVariableStack[this._editVariableStack.length - 1]
     );
+    this._needsSolving = false;
     return this;
   },
 
