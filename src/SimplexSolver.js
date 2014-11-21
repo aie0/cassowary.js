@@ -152,6 +152,7 @@ c.SimplexSolver = c.inherit({
     this.removeEditVarsTo(
       this._editVariableStack[this._editVariableStack.length - 1]
     );
+    this._needsSolving = false;
     return this;
   },
 
