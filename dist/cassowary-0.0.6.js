@@ -1839,6 +1839,24 @@ c.SimplexSolver = c.inherit({
       this._editVarList[i] = { v: cn.variable, info: ei };
   },
 
+  addEquationConstraint: function (p1, p2) {
+    if (p1 instanceof c.Point) {
+      this.addConstraint(new c.Equation(p1.x, p2.x));
+      this.addConstraint(new c.Equation(p1.y, p2.y));
+    } else {
+      this.addConstraint(new c.Equation(p1, p2));
+    }
+  },
+
+  addInequalityConstraint: function (p1, sign, p2) {
+    if (p1 instanceof c.Point) {
+      this.addConstraint(new c.Inequality(p1.x, sign, p2.x));
+      this.addConstraint(new c.Inequality(p1.y, sign, p2.y));
+    } else {
+       this.addConstraint(new c.Inequality(p1, sign, p2));
+    }
+  },
+
   addConstraint: function(cn /*c.Constraint*/) {
     c.fnenterprint("addConstraint: " + cn);
     var eplus_eminus = new Array(2);
